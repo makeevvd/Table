@@ -1,5 +1,6 @@
 import React from 'react';
-import {DataInterface} from "../Table";
+import {DataInterface, RowWrapper} from "../Table";
+import styled from "styled-components";
 
 
 
@@ -9,15 +10,19 @@ interface Props {
 
 const Row: React.FC<Props> = ({data}) => {
  return (
-  <tr>
-      <td>{data.id}</td>
-      <td>{data.parentId}</td>
-      <td>{data.isActive.toString()}</td>
-      <td>{data.balance}</td>
-      <td>{data.name}</td>
-      <td>{data.email}</td>
-  </tr>
+  <RowWrapper>
+      <Cell>{data.id}</Cell>
+      <Cell>{data.parentId}</Cell>
+      <Cell>{data.isActive.toString()}</Cell>
+      <Cell>{data.balance}</Cell>
+      <Cell>{data.name}</Cell>
+      <Cell>{data.email}</Cell>
+  </RowWrapper>
  );
 };
+
+const Cell = styled.td`
+//text-align: center;
+`
 
 export default Row;

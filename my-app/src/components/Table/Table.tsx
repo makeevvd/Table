@@ -2,35 +2,41 @@ import React, {useState} from 'react';
 import data from './../../default.json'
 import Row from "./Row/Row";
 import {useSortData} from "../../hooks/useSortData";
+import styled from "styled-components";
 
-const tableData = JSON.parse(JSON.stringify(data));
+const tableData:DataInterface[] = JSON.parse(JSON.stringify(data));
 
-
-
+export interface ConfigInterface {
+    key: SortKeysType
+    order?: "ascending" | "descending"
+}
 
 const Table: React.FC = () => {
 
 
-    const [sortConfig, setSortConfig] = useState<SortKeysType | null>(null);
+    const [sortConfig, setSortConfig] = useState<ConfigInterface | null>(null);
 
-    const headersArray = [...Object.keys(tableData[0])];
-    const headers = headersArray.map((header:SortKeysType) => <th onClick={() => setSortConfig(header)}>{header}</th>);
 
-    const sortedData = useSortData(tableData, sortConfig);
+    const headersArray = [...Object.keys(tableData[0])] as SortKeysType[];
+    const headers = headersArray.map((header:SortKeysType) => <Header
+        onClick={() => setSortConfig((prevConfig) => ({ ...prevConfig, key: header }))}>{header}
+    </Header>);
 
-    const rows = tableData.map((data: DataInterface) => <Row data={data}/>);
+    const sortedData = useSortData(tableData, sortConfig, setSortConfig);
+
+    const rows = sortedData.map((data: DataInterface) => <Row data={data}/>);
 
     return (
-        <div>
+        <TableWrapper>
             <thead>
-            <tr>
+            <RowWrapper>
                 {headers}
-            </tr>
+            </RowWrapper>
             </thead>
             <tbody>
                 {rows}
             </tbody>
-        </div>
+        </TableWrapper>
     );
 };
 
@@ -44,6 +50,36 @@ export interface DataInterface {
 }
 
 export type SortKeysType = keyof DataInterface;
+
+export const RowWrapper = styled.tr`
+display: grid;
+grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(100px, 2fr) minmax(150px, 2fr) minmax(150px, 2fr) minmax(150px, 4fr) ;
+`
+const Header = styled.th`
+cursor: pointer;
+`
+
+const TableWrapper = styled.table`
+
+width: 1200px;
+padding: 40px 120px;
+table-layout: fixed;
+margin: 0 auto;
+
+th, td {
+  padding: 0.25rem;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
+//display: flex;
+//flex-direction: column;
+//justify-content:center;
+//align-content: center;
+`
 
 
 
