@@ -11,11 +11,11 @@ interface Props {
 const Row: React.FC<Props> = ({data}) => {
  return (
   <RowWrapper>
-      <Cell>{data.id}</Cell>
-      <Cell>{data.parentId}</Cell>
+      {/*<Cell>{data.id}</Cell>*/}
+      {/*<Cell>{data.parentId}</Cell>*/}
+      <Cell>{data.name}</Cell>
       <Cell>{data.isActive.toString()}</Cell>
       <Cell>{data.balance}</Cell>
-      <Cell>{data.name}</Cell>
       <Cell>{data.email}</Cell>
   </RowWrapper>
  );

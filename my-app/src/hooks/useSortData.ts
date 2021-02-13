@@ -1,4 +1,10 @@
-import {ConfigInterface, DataInterface, OrderType, SortKeysType} from "../components/Table/Table";
+import {
+    ConfigInterface,
+    DataInterface,
+    DataInterfaceWithChildren,
+    OrderType,
+    SortKeysType
+} from "../components/Table/Table";
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 
 interface UseSortInterface {
@@ -6,7 +12,7 @@ interface UseSortInterface {
     setSort: (key: SortKeysType) => void
 }
 // export const useSortData = (tableData: DataInterface[], sortConfig: ConfigInterface | null, setSortConfig: any): DataInterface[] => {
-export const useSortData = (tableData: DataInterface[], config: ConfigInterface | null = null): UseSortInterface => {
+export const useSortData = (tableData: DataInterfaceWithChildren[], config: ConfigInterface | null = null): UseSortInterface => {
     debugger;
     // const [config, setConfig] = useState<SortKeysType | null>(null);
     //
