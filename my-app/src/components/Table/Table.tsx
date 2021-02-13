@@ -6,25 +6,28 @@ import styled from "styled-components";
 
 const tableData:DataInterface[] = JSON.parse(JSON.stringify(data));
 
+export type OrderType = "ascending" | "descending";
+
 export interface ConfigInterface {
     key: SortKeysType
-    order?: "ascending" | "descending"
+    order?: OrderType
 }
+
 
 const Table: React.FC = () => {
 
 
-    const [sortConfig, setSortConfig] = useState<ConfigInterface | null>(null);
+    // const [sortConfig, setSortConfig] = useState<ConfigInterface | null>(null);
 
+    const {items, setSort} = useSortData(tableData);
 
     const headersArray = [...Object.keys(tableData[0])] as SortKeysType[];
     const headers = headersArray.map((header:SortKeysType) => <Header
-        onClick={() => setSortConfig((prevConfig) => ({ ...prevConfig, key: header }))}>{header}
+        onClick={() => setSort(header)}>{header}
     </Header>);
 
-    const sortedData = useSortData(tableData, sortConfig, setSortConfig);
 
-    const rows = sortedData.map((data: DataInterface) => <Row data={data}/>);
+    const rows = items.map((data: DataInterface) => <Row data={data}/>);
 
     return (
         <TableWrapper>
