@@ -8,12 +8,11 @@ import {
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 
 interface UseSortInterface {
-    items: DataInterface[]
+    items: DataInterfaceWithChildren[]
     setSort: (key: SortKeysType) => void
 }
 // export const useSortData = (tableData: DataInterface[], sortConfig: ConfigInterface | null, setSortConfig: any): DataInterface[] => {
 export const useSortData = (tableData: DataInterfaceWithChildren[], config: ConfigInterface | null = null): UseSortInterface => {
-    debugger;
     // const [config, setConfig] = useState<SortKeysType | null>(null);
     //
     // useEffect(() => {

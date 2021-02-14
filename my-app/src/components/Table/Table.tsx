@@ -20,9 +20,8 @@ const Table: React.FC = () => {
 
   // const [sortConfig, setSortConfig] = useState<ConfigInterface | null>(null);
 
-  const preSortedData: any = useChildrenSort(tableData);
+  const preSortedData: DataInterfaceWithChildren[] = useChildrenSort(tableData);
 
-  debugger;
 
 
   const {items, setSort} = useSortData(preSortedData);
@@ -31,7 +30,8 @@ const Table: React.FC = () => {
   const headers = headersArray
     .map((header:SortKeysType) => <Header onClick={() => setSort(header)}>{header}</Header>);
 
-  const rows = items.map((data: DataInterface) => <Row data={data}/>);
+
+  const rows = items.map((data) => <Row key={data.id} data={data}/>);
 
   return (
     <TableWrapper>
@@ -67,7 +67,7 @@ export type SortKeysType = keyof DataInterface;
 
 export const RowWrapper = styled.tr`
 display: grid;
-grid-template-columns: minmax(100px, 3fr) minmax(100px, 2fr) minmax(100px, 2fr) minmax(150px, 5fr) ;
+grid-template-columns: minmax(100px, 3fr) minmax(100px, 2fr) minmax(100px, 2fr) minmax(150px, 5fr);
 `
 const Header = styled.th`
 cursor: pointer;
@@ -91,6 +91,7 @@ th, td {
 tbody tr:nth-child(odd) {
   background: rgba(247,214,248,0.38);
 }
+
 //display: flex;
 //flex-direction: column;
 //justify-content:center;
