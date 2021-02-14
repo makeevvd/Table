@@ -16,7 +16,7 @@ const Row: React.FC<Props> = ({data}) => {
   const childrenRows = data.childElements?.map((el) => <Row key={el.id} data={el} />);
   let fingerElem;
   if (hasChildren) {
-    fingerElem = showChildren ? '⬆' : '⬇';
+    fingerElem = showChildren ? `⮝` : '⮟';
   }
 
  return (
@@ -24,7 +24,7 @@ const Row: React.FC<Props> = ({data}) => {
   <RowWrapper onClick={() => setShowChildren((state) => !state)}>
       {/*<Cell>{data.id}</Cell>*/}
       {/*<Cell>{data.parentId}</Cell>*/}
-      <Cell>{data.name} <span style={{color: 'blue', fontSize: 20}}>{fingerElem}</span></Cell>
+      <Cell><strong>{data.name}</strong> <span style={{color: 'black', fontSize: 16}}>{fingerElem}</span></Cell>
       <Cell>{data.isActive.toString()}</Cell>
       <Cell>{data.balance}</Cell>
       <Cell>{data.email}</Cell>

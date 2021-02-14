@@ -71,6 +71,7 @@ grid-template-columns: minmax(100px, 3fr) minmax(100px, 2fr) minmax(100px, 2fr) 
 `
 const Header = styled.th`
 cursor: pointer;
+background-color: rgba(0, 0, 0, 0.08)
 `
 
 const TableWrapper = styled.table`
@@ -83,13 +84,13 @@ margin: 0 auto;
 th, td {
   padding: 0.25rem;
   text-align: left;
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 tbody tr:nth-child(odd) {
-  background: rgba(247,214,248,0.38);
+  background: #fff;
 }
 
 //display: flex;
