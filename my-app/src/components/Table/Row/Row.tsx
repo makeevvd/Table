@@ -39,7 +39,10 @@ const Cell = styled.td`
 `
 
 const ChildrenWrapper = styled.div`
-background-color: red;
+td, td {
+background-color: rgba(88,88,88, 0.22);
+}
+
 `
 
 export default Row;
