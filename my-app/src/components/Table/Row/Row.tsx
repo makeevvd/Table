@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {CSSProperties, useState} from 'react';
 import {DataInterface, DataInterfaceWithChildren, RowWrapper} from "../Table";
 import styled from "styled-components";
 
@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 interface Props {
     data: DataInterfaceWithChildren
-    style?: any
+    style?: CSSProperties
 }
 
 const Row: React.FC<Props> = ({data}) => {
