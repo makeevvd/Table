@@ -1,8 +1,6 @@
-import React, {CSSProperties, useState} from 'react';
-import {DataInterface, DataInterfaceWithChildren, RowWrapper} from "../Table";
+import React, { CSSProperties, useState } from 'react';
+import { DataInterfaceWithChildren, RowWrapper } from "../Table";
 import styled from "styled-components";
-
-
 
 interface Props {
     data: DataInterfaceWithChildren
@@ -22,21 +20,16 @@ const Row: React.FC<Props> = ({data}) => {
  return (
    <>
   <RowWrapper onClick={() => setShowChildren((state) => !state)}>
-      {/*<Cell>{data.id}</Cell>*/}
-      {/*<Cell>{data.parentId}</Cell>*/}
-      <Cell><strong>{data.name}</strong> <span style={{color: 'black', fontSize: 16}}>{fingerElem}</span></Cell>
-      <Cell>{data.isActive.toString()}</Cell>
-      <Cell>{data.balance}</Cell>
-      <Cell>{data.email}</Cell>
+      <td><strong>{data.name}</strong> <span style={{color: 'black', fontSize: 16}}>{fingerElem}</span></td>
+      <td>{data.isActive.toString()}</td>
+      <td>{data.balance}</td>
+      <td>{data.email}</td>
   </RowWrapper>
   <ChildrenWrapper hidden={!showChildren}>{childrenRows}</ChildrenWrapper>
   </>
  );
 };
 
-const Cell = styled.td`
-//text-align: center;
-`
 
 const ChildrenWrapper = styled.div`
 td, td {

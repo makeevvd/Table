@@ -3,7 +3,6 @@ import {useMemo} from "react";
 
 export const useChildrenSort = (tableData: DataInterface[]): DataInterfaceWithChildren[] => {
   const parentElements = tableData.filter((dataElement) => dataElement.parentId === 0);
-  // const parentsWithChildren = useMemo(() => {
   const parentsWithChildren = useMemo(() => {
     const parents = parentElements.map(
       (parentElem) => {
